@@ -21,7 +21,7 @@ class Solution {
             //막대 노드 --> 나가는거 0개
             else if(out[node] == 0){stickNode++;}
             //8자 노드 --> 나가는거 2개 이상 들어오는거 2개
-            else if(in[node] >= 2 && out[node] == 2){eightNode++;}
+            else if(in[node] >= 2 && out[node] >= 2){eightNode++;}
         }
         int donutNode = out[createNode] - (eightNode + stickNode);
 
