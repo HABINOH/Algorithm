@@ -11,8 +11,10 @@ class Solution {
                 sb.append(convertNum.charAt(i));
             }else{
                 if(sb.length()!=0 && isTrue(sb.toString())){answer++;}
-                if(sb.length()!=0)
-                    sb.delete(0, sb.length()+1);
+                System.out.println(sb.toString());
+                sb = new StringBuilder();
+                // if(sb.length()!=0)
+                //     sb.delete(0, sb.length()+1);
             }
         }
         if(sb.length() != 0){
