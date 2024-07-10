@@ -1,0 +1,12 @@
+-- 코드를 작성해주세요
+
+SELECT 
+  COUNT(fi.FISH_TYPE) AS FISH_COUNT
+, fni.FISH_NAME AS FISH_NAME
+FROM FISH_INFO fi
+JOIN FISH_NAME_INFO fni
+ON fi.fish_type = fni.fish_type
+GROUP BY fi.FISH_TYPE, fni.FISH_NAME
+ORDER BY 1 DESC
+
+# SELECT * FROM FISH_INFO;
