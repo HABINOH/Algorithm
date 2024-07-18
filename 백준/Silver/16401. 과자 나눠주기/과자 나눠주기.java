@@ -22,7 +22,6 @@ public class Main {
             snack[i] = Long.parseLong(stk.nextToken());
             end = Math.max(end, snack[i]);
         }
-        Arrays.sort(snack);
         long result = 0;
         while(start <= end){
             long mid = start + (end - start) / 2;
@@ -42,6 +41,7 @@ public class Main {
         long sum = 0;
         for(int i=0;i<n;i++){
             sum += snack[i] / mid;
+            if(sum >= m) break;
         }
         return sum >= m;
     }
