@@ -24,12 +24,12 @@ public class Main {
         }
         long result = 0;
         while(start <= end){
-            long mid = start + (end - start) / 2;
+            long mid = start + (end - start) / 2L;
             if(check(mid)){
-                start = mid + 1;
+                start = mid + 1L;
                 result = mid;
             }else{
-                end = mid - 1;
+                end = mid - 1L;
             }
         }
         bw.write(String.valueOf(result));
