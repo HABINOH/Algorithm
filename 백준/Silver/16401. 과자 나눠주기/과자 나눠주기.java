@@ -13,14 +13,16 @@ public class Main {
         m = Integer.parseInt(stk.nextToken());
         n = Integer.parseInt(stk.nextToken());
 
+        long start = 1;
+        long end = 1;
+
         snack = new long[n];
         stk = new StringTokenizer(br.readLine());
         for(int i=0;i<n;i++){
             snack[i] = Long.parseLong(stk.nextToken());
+            end = Math.max(end, snack[i]);
         }
         Arrays.sort(snack);
-        long start = 1;
-        long end = Long.MAX_VALUE-1;
         long result = 0;
         while(start <= end){
             long mid = start + (end - start) / 2;
