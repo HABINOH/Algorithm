@@ -1,0 +1,37 @@
+-- 코드를 작성해주세요
+
+WITH MAX_FISH AS(
+    SELECT
+     FISH_TYPE 
+    ,MAX(LENGTH) AS MAX_LENGTH
+    FROM 
+     FISH_INFO
+    WHERE
+     LENGTH IS NOT NULL
+    GROUP BY 
+     FISH_TYPE
+),
+MAX_FISH_IDX AS (
+    SELECT
+     fi.ID
+    ,fi.FISH_TYPE
+    ,fi.LENGTH
+    FROM 
+     FISH_INFO fi
+    JOIN
+     MAX_FISH mf
+    ON
+     fi.FISH_TYPE = mf.FISH_TYPE AND mf.MAX_LENGTH = fi.LENGTH
+)
+SELECT
+ mfi.ID
+,fni.FISH_NAME
+,mfi.LENGTH
+FROM 
+ MAX_FISH_IDX mfi
+JOIN 
+ FISH_NAME_INFO fni
+ON 
+ mfi.FISH_TYPE = fni.FISH_TYPE
+ORDER BY
+ 1
