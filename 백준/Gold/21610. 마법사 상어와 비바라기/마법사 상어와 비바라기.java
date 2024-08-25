@@ -97,28 +97,36 @@ public class Main {
         return x>=0 && y>=0 && x<n && y<n;
     }
     static void cloudMove(int dir, int dist) {
-        int nx,  ny;
-        for(int loop = 0; loop < clouds.size(); loop++) {
-            nx = clouds.get(loop).x;
-            ny = clouds.get(loop).y;
-            for (int i = 0; i < dist; i++) {
-                nx += dx[dir];
-                ny += dy[dir];
-                if (nx < 0) {
-                    nx = n - 1;
-                } else if (nx >= n) {
-                    nx = 0;
-                }
+        for (int i = 0; i < clouds.size(); i++) {
+            int nx = (clouds.get(i).x + dx[dir] * dist + n * dist) % n;
+            int ny = (clouds.get(i).y + dy[dir] * dist + n * dist) % n;
 
-                if (ny < 0) {
-                    ny = n - 1;
-                } else if (ny >= n) {
-                    ny = 0;
-                }
-            }
-            clouds.set(loop, new Cloud(nx, ny));
+            clouds.set(i, new Cloud(nx, ny));
         }
     }
+//    static void cloudMove(int dir, int dist) {
+//        int nx,  ny;
+//        for(int loop = 0; loop < clouds.size(); loop++) {
+//            nx = clouds.get(loop).x;
+//            ny = clouds.get(loop).y;
+//            for (int i = 0; i < dist; i++) {
+//                nx += dx[dir];
+//                ny += dy[dir];
+//                if (nx < 0) {
+//                    nx = n - 1;
+//                } else if (nx >= n) {
+//                    nx = 0;
+//                }
+//
+//                if (ny < 0) {
+//                    ny = n - 1;
+//                } else if (ny >= n) {
+//                    ny = 0;
+//                }
+//            }
+//            clouds.set(loop, new Cloud(nx, ny));
+//        }
+//    }
     static class Cloud {
         int x;
         int y;
