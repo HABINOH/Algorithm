@@ -20,7 +20,9 @@ public class Main {
         int maxLength = 0;
 
         for(int i=0;i<n-1;i++){
+            if(maxLength >= words[i].length()){continue;}
             for(int j=i+1;j<n;j++){
+                if(maxLength >= words[j].length()){continue;}
                 int prefixLength = check(words[i], words[j]);
                 if(maxLength < prefixLength){
                     maxLength = prefixLength;
