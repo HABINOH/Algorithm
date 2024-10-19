@@ -1,0 +1,31 @@
+-- 코드를 입력하세요
+
+SELECT ANIMAL_ID, NAME
+FROM ANIMAL_INS
+WHERE NAME REGEXP 'el'
+AND ANIMAL_TYPE = 'Dog'
+ORDER BY 2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# SELECT
+# ANIMAL_ID
+# , NAME
+# FROM ANIMAL_INS
+# WHERE ANIMAL_TYPE = 'Dog' 
+# AND instr(NAME, 'el') > 0
+# ORDER BY 2
