@@ -1,42 +1,44 @@
-import java.io.*;
 import java.util.*;
+import java.io.*;
 
 public class Main {
-    static long[] line;
-    static long n;
-    static long m;
+    static long[] time;
+    static int n,m;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-
         StringTokenizer stk = new StringTokenizer(br.readLine());
-        n = Long.parseLong(stk.nextToken());
-        m = Long.parseLong(stk.nextToken());
-        line = new long[(int)n];
-        for(int i=0;i<n;i++){
-            line[i] = Long.parseLong(br.readLine());
-        }
 
-        long st = 1;
-        long en = Long.MAX_VALUE;
+        n = Integer.parseInt(stk.nextToken());
+        m = Integer.parseInt(stk.nextToken());
+
+        time = new long[n];
+        for(int i=0;i<n;i++){
+            stk = new StringTokenizer(br.readLine());
+            time[i] = Long.parseLong(stk.nextToken());
+        }
         long answer = Long.MAX_VALUE;
-        while(st <= en){
-            long mid = st + (en - st) / 2;
+        long start = 0;
+        long end = Long.MAX_VALUE;
+        while(start <= end){
+            long mid = start + (end - start) / 2;
             if(check(mid)){
-                en = mid - 1;
+                end = mid - 1;
                 answer = Math.min(answer, mid);
-            }else{
-                st = mid + 1;
+            }else {
+                start = mid + 1;
             }
         }
         bw.write(String.valueOf(answer));
         bw.flush();
+        bw.close();
+        br.close();
     }
     static boolean check(long mid){
         long sum = 0;
         for(int i=0;i<n;i++){
-            sum += mid / line[i];
-            if(sum >= m){return true;}
+             sum += mid / time[i];
+             if(sum >= m){return true;}
         }
         return sum >= m;
     }
