@@ -1,47 +1,48 @@
-import java.io.*;
 import java.util.*;
+import java.io.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-
-        int n = Integer.parseInt(br.readLine());
-
         StringTokenizer stk = new StringTokenizer(br.readLine());
-        int i = 0;
-        int[] numbers = new int[n];
-        while (stk.hasMoreTokens()){
-            numbers[i++] = Integer.parseInt(stk.nextToken());
+
+        int n = Integer.parseInt(stk.nextToken());
+
+        int[] arr = new int[n];
+        stk = new StringTokenizer(br.readLine());
+        for(int i=0;i<n;i++){
+            arr[i] = Integer.parseInt(stk.nextToken());
         }
+        Arrays.sort(arr);
 
-        Arrays.sort(numbers);
+        int answer = 0;
+        for(int i=0;i<n;i++){
+            int target = arr[i];
 
-        int result = 0;
-        for(i=0;i<n;i++){
-            int target = numbers[i];
             int start = 0;
             int end = n-1;
-
             while(start < end){
-                int sum = numbers[start] + numbers[end];
-                if(sum == target){
+                int compareNum = arr[start] + arr[end];
+                if(target == compareNum){
                     if(start != i && end != i){
-                        result++;
+                        answer++;
+//                        System.out.println(start + " " + end);
                         break;
                     }else if(start == i){
                         start++;
                     }else{
                         end--;
                     }
-                }else if(sum < target){
-                    start++;
-                }else{
+                }else if(target < compareNum){
                     end--;
+                }else{
+                    start++;
                 }
             }
         }
-        bw.write(String.valueOf(result));
+
+        bw.write(String.valueOf(answer));
         bw.flush();
         bw.close();
         br.close();
